@@ -1,0 +1,36 @@
+# DOCKER
+
+## Stop all running containers
+
+docker stop $(docker ps -a -q)
+
+## Remove all containers
+
+docker rm $(docker ps -a -q)
+
+## Remove all images
+
+docker rmi $(docker images)
+
+
+
+# Build project
+
+ ## Build
+docker build -t careeco-node .
+
+## Build vite dir
+
+docker run -it --rm --user $(id -u):$(id -g) -v $(pwd):/app careeco-node sh
+
+## Install vite latest minimal
+
+npm create vite@latest .
+
+npm install
+
+
+# Run the whole thing
+
+docker run -it -v $(pwd):/app -p 5173:5173 careeco-node
+
